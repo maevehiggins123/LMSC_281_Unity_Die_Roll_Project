@@ -1,4 +1,9 @@
-﻿//example provided by http://www.cookingwithunity.com/
+﻿//Conrad Robertson
+//LMSC-281
+//Fall 2016
+//Die Roll Project
+
+//example provided by http://www.cookingwithunity.com/
 
 using UnityEngine;
 using System.Collections;
@@ -13,7 +18,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
 	private bool rollComplete = false;
 
 	//array to hold the die values
-	public int[] allValues = new int[5];
+	public int[] allValues = new int[100];
 
 	//set initial array position
 	public int arrayPosition = 0;
@@ -23,7 +28,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
 
 	void Start () {
 
-		//finding TextHelper object
+		//finding TextHelper game object so we can write and read text
 		TextWriter = GameObject.Find("TextHelper");
 
 	}
@@ -42,7 +47,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
 		{
 			rollComplete = true;
 
-			//if die is done rolling, apply the autoRun force to automatically roll die again
+			//if die is done rolling, apply the autoRun force to automatically roll die again (true)
 			GetComponent<ApplyForceInRandomDirection> ().autoRun = true;
 			CaptureToArray();
 
@@ -51,7 +56,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
 		{
 			rollComplete = false;
 
-			//if die is not done rolling, do not apply the autoRun force
+			//if die is not done rolling, do not apply the autoRun force (false)
 			GetComponent<ApplyForceInRandomDirection> ().autoRun = false;
 		}
 
@@ -59,14 +64,16 @@ public class DisplayCurrentDieValue : MonoBehaviour
 
 	public void CaptureToArray () {
 
-
+		//if array is NOT full, put current die value into current array position, then move to the next array position
 		if (arrayPosition < allValues.Length) {
 			allValues [arrayPosition] = currentValue;
 			Debug.Log ("The current array position is " + arrayPosition + " with a value of " + allValues [arrayPosition]);
 			arrayPosition++;
 		}
 
+		//if array is full
 		if (arrayPosition == allValues.Length) {
+			
 			//turn off the auto rolling capabilities
 			GetComponent<ApplyForceInRandomDirection> ().autoRun = false;
 
@@ -80,6 +87,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
 
 	void OnGUI()
 	{
+		//Display current die value on GUI
 		GUILayout.Label(currentValue.ToString());
 	}
 }

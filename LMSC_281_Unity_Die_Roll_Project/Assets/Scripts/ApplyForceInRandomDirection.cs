@@ -1,4 +1,9 @@
-﻿//example provided by http://www.cookingwithunity.com/
+﻿//Conrad Robertson
+//LMSC-281
+//Fall 2016
+//Die Roll Project
+
+//example provided by http://www.cookingwithunity.com/
 
 using UnityEngine;
 using System.Collections;
@@ -10,7 +15,7 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 	public float torqueAmount = 10.0f;
 	public ForceMode forceMode;
 
-	//Allows for autorun functionality
+	//Allows for autorun functionality when TRUE
 	public bool autoRun = false;
 
 
@@ -19,7 +24,7 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 	void Update ()
 	{
 
-		//roll die with ai
+		//roll die with AI by applying force to the die
 		if (autoRun) {
 			
 			GetComponent<Rigidbody>().AddForce(Random.onUnitSphere*forceAmount,forceMode);
