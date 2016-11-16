@@ -10,13 +10,22 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 	public float torqueAmount = 10.0f;
 	public ForceMode forceMode;
 
+	//Allows for autorun functionality
+	public bool autoRun = false;
+
+
+
 	// Update is called once per frame
 	void Update ()
 	{
-		if(Input.GetButtonDown(buttonName))
-		{
+
+		//roll die with ai
+		if (autoRun) {
+			
 			GetComponent<Rigidbody>().AddForce(Random.onUnitSphere*forceAmount,forceMode);
 			GetComponent<Rigidbody>().AddTorque(Random.onUnitSphere*torqueAmount,forceMode);
 		}
 	}
+
+
 }
