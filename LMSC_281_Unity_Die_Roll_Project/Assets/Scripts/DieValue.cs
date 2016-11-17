@@ -1,4 +1,8 @@
-﻿//example provided by http://www.cookingwithunity.com/
+﻿//Aaron Spieldenner
+//LMSC-281
+//Fall 2016
+//Die Roll Project
+//example provided by http://www.cookingwithunity.com/
 
 using UnityEngine;
 using System.Collections;
