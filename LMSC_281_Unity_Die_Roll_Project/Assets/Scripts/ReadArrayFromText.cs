@@ -16,12 +16,12 @@ public class ReadArrayFromText : MonoBehaviour {
 	//boolean used to trigger ReadTextFromFile
 	public bool readText = false;
 
-	public int[] intArray = new int[5]; 
+	public int[] intArray = new int[10];
 
 
 	// Use this for initialization
 	void Start () {
-
+		
 	
 	}
 	
@@ -38,10 +38,14 @@ public class ReadArrayFromText : MonoBehaviour {
 		allTextString = File.ReadAllText(Application.dataPath + "/Resources/Data.txt");
 		Debug.Log (allTextString);
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 10; i++) {
 			string tempString = allTextString[i].ToString();
 
 			intArray [i] = System.Int32.Parse (tempString);
+
+
+			}
 		}
-	}
+
+	
 }

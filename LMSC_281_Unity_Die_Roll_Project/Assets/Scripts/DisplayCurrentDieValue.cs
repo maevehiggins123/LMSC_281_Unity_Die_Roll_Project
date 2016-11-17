@@ -18,7 +18,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
 	private bool rollComplete = false;
 
 	//array to hold the die values
-	public int[] allValues = new int[5];
+	public int[] allValues = new int[10];
 
 	//set initial array position
 	public int arrayPosition = 0;
@@ -26,7 +26,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
 	//Needed for access to TextHelper object, for turning "runWriteArray" to true
 	GameObject TextWriter;
 
-	//Variables to count how many times a particular number appears
+//	//Variables to count how many times a particular number appears
 	public int OneCount = 0;
 	public int TwoCount = 0;
 	public int ThreeCount = 0;
@@ -39,7 +39,6 @@ public class DisplayCurrentDieValue : MonoBehaviour
 
 		//finding TextHelper game object so we can write and read text
 		TextWriter = GameObject.Find("TextHelper");
-
 	}
 
 	// Update is called once per frame
@@ -78,7 +77,33 @@ public class DisplayCurrentDieValue : MonoBehaviour
 			allValues [arrayPosition] = currentValue;
 			Debug.Log ("The current array position is " + arrayPosition + " with a value of " + allValues [arrayPosition]);
 			arrayPosition++;
-		}
+
+			//for (int i = 0; i < allValues.Length; i++) {
+							switch(currentValue) {
+				
+							case 1:
+								OneCount++;
+								break;
+							case 2:
+								TwoCount++;
+								break;
+							case 3:
+								ThreeCount++;
+								break;
+							case 4:
+								FourCount ++;
+								break;
+							case 5:
+								FiveCount++;
+								break;
+							case 6:
+								SixCount++;
+								break;
+							}
+						}
+			
+
+
 
 		//if array is full
 		if (arrayPosition == allValues.Length) {
@@ -92,42 +117,15 @@ public class DisplayCurrentDieValue : MonoBehaviour
 			//run our read text function
 			TextWriter.GetComponent<ReadArrayFromText> ().readText = true;
 
-			CountNumbers ();
+			NumberCount ();
 		}
 	}
 
-	//Count total times a certain number appeared
-	public void CountNumbers(){
-		for (int i = 0; i < allValues.Length; i++) {
-			switch(currentValue) {
+	void NumberCount () {
 
-			case 1:
-				OneCount = OneCount++;
-				Debug.Log ("The Current One Count is " + OneCount);
-				break;
-			case 2:
-				TwoCount = TwoCount++;
-				break;
-			case 3:
-				ThreeCount = ThreeCount++;
-				break;
-			case 4:
-				FourCount = FourCount++;
-				break;
-			case 5:
-				FiveCount = FiveCount++;
-				break;
-			case 6:
-				SixCount = SixCount++;
-				break;
-			}
-		}
+		Debug.Log ("Four count is " + FourCount);
+
 	}
 
-	void OnGUI()
-	{
-		//Display current die value on GUI
-		//GUILayout.Label(currentValue.ToString());
-		GUILayout.Label(OneCount.ToString());
+
 	}
-}
