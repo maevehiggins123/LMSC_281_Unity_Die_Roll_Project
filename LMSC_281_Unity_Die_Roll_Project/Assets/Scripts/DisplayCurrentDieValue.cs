@@ -18,13 +18,22 @@ public class DisplayCurrentDieValue : MonoBehaviour
 	private bool rollComplete = false;
 
 	//array to hold the die values
-	public int[] allValues = new int[100];
+	public int[] allValues = new int[5];
 
 	//set initial array position
 	public int arrayPosition = 0;
 
 	//Needed for access to TextHelper object, for turning "runWriteArray" to true
 	GameObject TextWriter;
+
+	//Variables to count how many times a particular number appears
+	public int OneCount = 0;
+	public int TwoCount = 0;
+	public int ThreeCount = 0;
+	public int FourCount = 0;
+	public int FiveCount = 0;
+	public int SixCount = 0;
+
 
 	void Start () {
 
@@ -82,12 +91,43 @@ public class DisplayCurrentDieValue : MonoBehaviour
 
 			//run our read text function
 			TextWriter.GetComponent<ReadArrayFromText> ().readText = true;
+
+			CountNumbers ();
+		}
+	}
+
+	//Count total times a certain number appeared
+	public void CountNumbers(){
+		for (int i = 0; i < allValues.Length; i++) {
+			switch(currentValue) {
+
+			case 1:
+				OneCount = OneCount++;
+				Debug.Log ("The Current One Count is " + OneCount);
+				break;
+			case 2:
+				TwoCount = TwoCount++;
+				break;
+			case 3:
+				ThreeCount = ThreeCount++;
+				break;
+			case 4:
+				FourCount = FourCount++;
+				break;
+			case 5:
+				FiveCount = FiveCount++;
+				break;
+			case 6:
+				SixCount = SixCount++;
+				break;
+			}
 		}
 	}
 
 	void OnGUI()
 	{
 		//Display current die value on GUI
-		GUILayout.Label(currentValue.ToString());
+		//GUILayout.Label(currentValue.ToString());
+		GUILayout.Label(OneCount.ToString());
 	}
 }
