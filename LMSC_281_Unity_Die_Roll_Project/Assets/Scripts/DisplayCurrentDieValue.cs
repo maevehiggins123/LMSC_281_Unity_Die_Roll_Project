@@ -18,7 +18,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
 	private bool rollComplete = false;
 
 	//array to hold the die values
-	public int[] allValues = new int[10];
+	public int[] allValues = new int[100];
 
 	//set initial array position
 	public int arrayPosition = 0;
@@ -123,8 +123,20 @@ public class DisplayCurrentDieValue : MonoBehaviour
 
 	void NumberCount () {
 
+		//Testing that numbers are totaling correctly
 		Debug.Log ("Four count is " + FourCount);
 
+	}
+
+	void OnGUI (){
+
+		//Display number of times a number was rolled compared to expected amount
+		GUILayout.Label("The number 1 was rolled " + OneCount + " times out of expected 16.6");
+		GUILayout.Label("The number 2 was rolled " + TwoCount + " times out of expected 16.6");
+		GUILayout.Label("The number 3 was rolled " + ThreeCount + " times out of expected 16.6");
+		GUILayout.Label("The number 4 was rolled " + FourCount + " times out of expected 16.6");
+		GUILayout.Label("The number 5 was rolled " + FiveCount + " times out of expected 16.6");
+		GUILayout.Label("The number 6 was rolled " + SixCount + " times out of expected 16.6");
 	}
 
 
