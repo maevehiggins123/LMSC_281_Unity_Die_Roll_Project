@@ -1,15 +1,20 @@
-﻿//example provided by http://www.cookingwithunity.com/
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class DisplayCurrentDieValue : MonoBehaviour
 {
 	public LayerMask dieValueColliderLayer = -1;
 
-	private int currentValue = 1;
+	public int currentValue = 1;
 
 	private bool rollComplete = false;
+
+	//array to hold the die values
+	public int[] allValues = new int[5];
+	//set initial array position
+	public int arrayPosition = 0;
+
+
 
 	// Update is called once per frame
 	void Update ()
@@ -21,19 +26,25 @@ public class DisplayCurrentDieValue : MonoBehaviour
 			currentValue = hit.collider.GetComponent<DieValue>().value;
 		}
 
-		if(GetComponent<Rigidbody>().IsSleeping() && !rollComplete)
-		{
+		if (GetComponent<Rigidbody> ().IsSleeping () && !rollComplete) {
 			rollComplete = true;
-			Debug.Log("Die roll complete, die is at rest");
+			//Debug.Log ("Die roll complete, die is at rest");
+
 		}
+
+
+
 		else if(!GetComponent<Rigidbody>().IsSleeping())
 		{
 			rollComplete = false;
+
 		}
+
 	}
 
 	void OnGUI()
 	{
 		GUILayout.Label(currentValue.ToString());
 	}
+
 }

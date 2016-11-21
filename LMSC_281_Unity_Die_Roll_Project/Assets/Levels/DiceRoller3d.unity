@@ -105,6 +105,7 @@ GameObject:
   - 114: {fileID: 98472632}
   - 114: {fileID: 98472633}
   - 114: {fileID: 98472634}
+  - 114: {fileID: 98472635}
   m_Layer: 0
   m_Name: Die
   m_TagString: Untagged
@@ -209,6 +210,14 @@ MonoBehaviour:
   forceAmount: 20
   torqueAmount: 50
   forceMode: 2
+  rollCount: 0
+  valueDisplayScript: {fileID: 98472633}
+  numberOneCount: 0
+  numberTwoCount: 0
+  numberThreeCount: 0
+  numberFourCount: 0
+  numberFiveCount: 0
+  numberSixCount: 0
 --- !u!114 &98472633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +232,9 @@ MonoBehaviour:
   dieValueColliderLayer:
     serializedVersion: 2
     m_Bits: 131072
+  currentValue: 1
+  allValues: 0000000000000000000000000000000000000000
+  arrayPosition: 0
 --- !u!114 &98472634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +247,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAngularVelocity: 30
+--- !u!114 &98472635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 98472626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404d85e13bbae4ccca4d99ccba28b3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  valueDisplayScript: {fileID: 98472633}
+  allScores: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  arrayPosition: 0
+  currentNumber: 1
 --- !u!1 &239562448
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,6 +707,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 391085203}
   m_RootOrder: 2
+--- !u!1 &506934380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 506934381}
+  - 114: {fileID: 506934382}
+  - 114: {fileID: 506934383}
+  m_Layer: 0
+  m_Name: TextHelper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &506934381
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 506934380}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+--- !u!114 &506934382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 506934380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86246152e99804f2a9b238275db1d56d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stringOfValues: 
+  runWriteArray: 0
+--- !u!114 &506934383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 506934380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c5e445da11742c6a476e1091046f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  readText: 0
+  intArray: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!1 &537834459
 GameObject:
   m_ObjectHideFlags: 0
