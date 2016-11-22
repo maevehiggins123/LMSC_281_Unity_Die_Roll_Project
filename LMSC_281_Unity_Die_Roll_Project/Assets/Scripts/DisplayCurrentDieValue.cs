@@ -16,7 +16,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
 	private bool rollComplete = false;
 
 	//array to hold die values
-	public int[] allValues = new int[5];
+	public int[] allValues = new int[20];
 
 	public int arrayPosition = 0;
 
