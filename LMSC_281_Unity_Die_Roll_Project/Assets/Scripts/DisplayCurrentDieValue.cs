@@ -24,10 +24,13 @@ public class DisplayCurrentDieValue : MonoBehaviour
 		{
 			rollComplete = true;
 			Debug.Log("Die roll: " + currentValue + ".");
+			GetComponent<ApplyForceInRandomDirection>().readyToThrow = true;
 		}
 		else if(!GetComponent<Rigidbody>().IsSleeping())
 		{
 			rollComplete = false;
+			GetComponent<ApplyForceInRandomDirection>().readyToThrow = false;
+
 		}
 	}
 
