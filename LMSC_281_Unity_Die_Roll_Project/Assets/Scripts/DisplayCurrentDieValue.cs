@@ -18,13 +18,14 @@ public class DisplayCurrentDieValue : MonoBehaviour
 	public int[] dieResults = new int[20];
 
 	private int arrayPosition = 0;
-	// Update is called once per frame
 
 	void Start ()
 	{
-		CaptureToArray ();
+		//JC we will do this after a roll has been completed
+//		CaptureToArray ();
 	}
 
+	// Update is called once per frame
 	void Update ()
 	{
 		RaycastHit hit;
@@ -38,15 +39,22 @@ public class DisplayCurrentDieValue : MonoBehaviour
 		{
 			rollComplete = true;
 			Debug.Log("Die roll complete, die is at rest");
+			//JC we can capture the values after the roll is complete
+			CaptureToArray();
 		}
 		else if(!GetComponent<Rigidbody>().IsSleeping())
 		{
 			rollComplete = false;
 		}
 	}
-	while (dieResults < 20) {
-		public void CaptureToArray()
-		{
+
+	//JC so move that function declaration up here as commented out a few lines below
+	public void CaptureToArray ()
+	{
+		//JC the dieResults is an array so we need to reference a position
+//		while (arrayPosition < 20) {
+		//JC we can't embed a function inside another function in this way we need it to be topmost as a declared method
+//		public void CaptureToArray()
 		
 			if (arrayPosition < dieResults.Length) {
 				dieResults [arrayPosition] = currentValue;
@@ -55,7 +63,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
 				//get ready to capture the next number
 				arrayPosition++;
 			}
-		}
+//		}
 	}
 		
 
