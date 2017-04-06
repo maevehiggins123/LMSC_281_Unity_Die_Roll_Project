@@ -45,6 +45,9 @@ public class DisplayCurrentDieValue : MonoBehaviour
 		else if(!GetComponent<Rigidbody>().IsSleeping())
 		{
 			rollComplete = false;
+			//JC if the die is currently moving we shouldn't be trying to roll it
+			GetComponent<ApplyForceInRandomDirection>().rollAgain = false;
+
 		}
 	}
 
@@ -55,14 +58,17 @@ public class DisplayCurrentDieValue : MonoBehaviour
 //		while (arrayPosition < 20) {
 		//JC we can't embed a function inside another function in this way we need it to be topmost as a declared method
 //		public void CaptureToArray()
-		
-			if (arrayPosition < dieResults.Length) {
-				dieResults [arrayPosition] = currentValue;
-				//checking our logic
-				Debug.Log ("The current array position is " + arrayPosition + " with a value of " + dieResults [arrayPosition]);
-				//get ready to capture the next number
-				arrayPosition++;
-			}
+		if (arrayPosition < dieResults.Length) {
+			dieResults [arrayPosition] = currentValue;
+			//checking our logic
+			Debug.Log ("The current array position is " + arrayPosition + " with a value of " + dieResults [arrayPosition]);
+			//get ready to capture the next number
+			arrayPosition++;
+			//JC if we need to roll again, we will set the boolean in the ApplyForce class to true 
+			GetComponent<ApplyForceInRandomDirection>().rollAgain = true;
+		}
+
+
 //		}
 	}
 		
