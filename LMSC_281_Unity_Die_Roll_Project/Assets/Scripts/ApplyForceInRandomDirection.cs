@@ -13,6 +13,7 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+	//	if(Input.GetButtonDown(buttonName))
 		if(Input.GetButtonDown(buttonName))
 		{
 			GetComponent<Rigidbody>().AddForce(Random.onUnitSphere*forceAmount,forceMode);
