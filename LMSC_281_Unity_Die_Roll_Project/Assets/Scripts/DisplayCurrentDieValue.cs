@@ -13,8 +13,11 @@ public class DisplayCurrentDieValue : MonoBehaviour
 
     public static DisplayCurrentDieValue instance;
 
-    public int[] dieNumberArray = new int[21];
-    int rollCounter = 1;
+	//JC to make this work correctly without skipping the first position begin the roll counter at 0
+    public int[] dieNumberArray = new int[5];
+
+	//JC begin your counter at 0, to match the way an array position begins
+    int rollCounter = 0;
 
     void Awake()
     {

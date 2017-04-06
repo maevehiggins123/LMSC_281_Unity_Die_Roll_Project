@@ -40,6 +40,8 @@ public class DisplayResultButton : MonoBehaviour {
     }
 
     //Update dice number score
+
+	//JC this is working but you need to then find a way to present it in the game window!
     void TaskOnClick()
     {
         countText1.text = "Number 1: " + dieNumber1.ToString();

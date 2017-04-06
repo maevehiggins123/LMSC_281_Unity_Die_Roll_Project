@@ -22,14 +22,22 @@ public class ApplyForceInRandomDirection : MonoBehaviour
     //Using Enumerator which allows the game to wait a number of seconds before continuing dice rolling loop.
     IEnumerator WaitAndPrint()
     {
-        int i = 1;
-        while (i < 21)
+		//JC to match the array position let's start ay 0
+        int i = 0;
+
+		//JC this value "21" would be better served as a variable so that if it changes in one script it can change in another
+        while (i < 5)
         {
             AddDiceForce();
+
+			//JC we can move the increment to make your debug match human counting expectations
+			i++;
             Debug.Log("current roll is:" + i);
-            yield return new WaitForSeconds(6f);
+
+			//JC given that we have a roll complete Boolean you could just key off of that instead of forcing a long wait
+            yield return new WaitForSeconds(3f);
           
-            i++;
+
         }               
     }
 
