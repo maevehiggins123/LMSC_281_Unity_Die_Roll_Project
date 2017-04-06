@@ -7,7 +7,8 @@ public class DisplayCurrentDieValue : MonoBehaviour
 {
 	public LayerMask dieValueColliderLayer = -1;
 
-	private int currentValue = 1;
+	//JC made this public so the CaptureDieValue could use it
+	public int currentValue = 1;
 
 	private bool rollComplete = false;
 
@@ -25,6 +26,13 @@ public class DisplayCurrentDieValue : MonoBehaviour
 		{
 			rollComplete = true;
 			Debug.Log("Die roll complete, die is at rest");
+			//JC adding the capture function here
+			GetComponent<CaptureDieArray>().CaptureToArray();
+
+			//JC check to see if we need to do another roll
+			if ((GetComponent<CaptureDieArray>().arrayPosition) < (GetComponent<CaptureDieArray>().numOfRolls) ) {
+				GetComponent<ApplyForceInRandomDirection>().rollTheDie = true;
+			}
 		}
 		else if(!GetComponent<Rigidbody>().IsSleeping())
 		{
