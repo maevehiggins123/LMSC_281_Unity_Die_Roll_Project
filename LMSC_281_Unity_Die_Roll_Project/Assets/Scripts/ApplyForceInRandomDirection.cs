@@ -1,4 +1,6 @@
-﻿//example provided by http://www.cookingwithunity.com/
+﻿//LMSC 281 
+//Augustus Rivera
+//Roll a Die
 
 using UnityEngine;
 using System.Collections;
@@ -13,6 +15,7 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+	//	if(Input.GetButtonDown(buttonName))
 		if(Input.GetButtonDown(buttonName))
 		{
 			GetComponent<Rigidbody>().AddForce(Random.onUnitSphere*forceAmount,forceMode);

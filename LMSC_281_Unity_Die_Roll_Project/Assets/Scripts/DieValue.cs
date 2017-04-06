@@ -1,4 +1,6 @@
-﻿//example provided by http://www.cookingwithunity.com/
+﻿//LMSC 281 
+//Augustus Rivera
+//Roll a Die
 
 using UnityEngine;
 using System.Collections;
