@@ -36,7 +36,8 @@ public class Roller : MonoBehaviour {
 	//public string resultsString = string.Join("",results.Select(i => i.ToString()).ToArray()); 
 
 	bool dropped = true; //I use this to determine when the die is resting, and on the ground after a roll.
-	bool ng = false;
+	//JC for testing only
+	//public bool ng = false;
 
 	public void Start () {
 
@@ -52,6 +53,19 @@ public class Roller : MonoBehaviour {
 	public void Update(){
 		if (i < trials) {
 			Controller ();
+		}
+
+		//JC moved this so the load game will work, and no need for the invoke
+//		if (ng == true) {
+//			Debug.Log ("gogogo");
+//	//		Invoke ("NewGame", 2);
+//			NewGame();
+//			ng = false;
+//		}
+
+		//JC rewriting just to use a keyboard input rather than the Boolean value
+		if (Input.GetKeyDown("space")) {
+			NewGame();
 		}
 	}
 		
@@ -133,11 +147,15 @@ public class Roller : MonoBehaviour {
 
 			//This will occur once the amount of trials is completed, then it will print each result into it's own line.
 			if (i == trials) {
-			//replayText.text = "Press Space To Play Again";
+
+				//JC you had the following line commented out but it works fine
+				replayText.text = "Press Space To Play Again";
 				for (int j = 0; j < trials; j++) 
 				{
-					//SetResultsText ();
-					//resultsText.text = "It rolled " + results[j].ToString() + " on roll " + (j+1) + ".";
+					//JC we need to add the integer we are using "j" to the passed parameter
+					//SetResultsText (j);
+					//JC or you can do it this way
+					resultsText.text = resultsText.text + "It rolled " + results[j].ToString() + " on roll " + (j+1) + "." + "\n";
 					Debug.Log("It rolled " + results[j].ToString() + " on roll " + (j+1) + ".");
 
 				}
@@ -146,12 +164,6 @@ public class Roller : MonoBehaviour {
 				//ng = true;
 				//Debug.Log ("true");
 
-//				if (ng == true) {
-//					Debug.Log ("gogogo");
-//					Invoke ("newGame", 2);
-//					ng = false;
-//
-//					}
 				}
 
 			dropped = true; // this will send the die back to the "launch" if-statement.
@@ -159,13 +171,13 @@ public class Roller : MonoBehaviour {
 	}
 
 	void SetResultsText (int j){	
-		//resultsText.text = "It rolled " + results[j].ToString() + " on roll " + (j+1) + ".";
-		Debug.Log("It rolled " + results[j].ToString() + " on roll " + (j+1) + ".");
+		resultsText.text = "It rolled " + results[j].ToString() + " on roll " + (j+1) + ".";
+		//Debug.Log("It rolled " + results[j].ToString() + " on roll " + (j+1) + ".");
 	}
 
-	public void newGame(){
+	public void NewGame(){
 
-		SceneManager.LoadScene("Main", LoadSceneMode.Single);
+		SceneManager.LoadScene("Main");
 
 	}
 }
