@@ -10,13 +10,12 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 	public float torqueAmount = 10.0f;
 	public ForceMode forceMode;
 
-	// Update is called once per frame
 	void Update ()
 	{
 		if(Input.GetButtonDown(buttonName))
 		{
-			GetComponent<Rigidbody>().AddForce(Random.onUnitSphere*forceAmount,forceMode);
-			GetComponent<Rigidbody>().AddTorque(Random.onUnitSphere*torqueAmount,forceMode);
+			GetComponent<Rigidbody> ().AddForce (Random.onUnitSphere * forceAmount, forceMode);
+			GetComponent<Rigidbody> ().AddTorque (Random.onUnitSphere * torqueAmount, forceMode);
 		}
 	}
 }

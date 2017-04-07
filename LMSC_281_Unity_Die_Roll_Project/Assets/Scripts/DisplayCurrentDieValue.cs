@@ -7,11 +7,10 @@ public class DisplayCurrentDieValue : MonoBehaviour
 {
 	public LayerMask dieValueColliderLayer = -1;
 
-	private int currentValue = 1;
+	public int currentValue = 1;
 
-	private bool rollComplete = false;
+	public bool rollComplete = false;
 
-	// Update is called once per frame
 	void Update ()
 	{
 		RaycastHit hit;
@@ -24,6 +23,8 @@ public class DisplayCurrentDieValue : MonoBehaviour
 		if(GetComponent<Rigidbody>().IsSleeping() && !rollComplete)
 		{
 			rollComplete = true;
+			//call custom CaptureToArray function
+			GetComponent<CaptureValue> ().CaptureToArray ();
 			Debug.Log("Die roll complete, die is at rest");
 		}
 		else if(!GetComponent<Rigidbody>().IsSleeping())
