@@ -27,4 +27,11 @@ public class CaptureValue : MonoBehaviour {
 			arrayPosition++;
 		}
 	}
+
+	//JC new function to be called when the rolls are completed
+	public void DisplayArrayValues () {
+		for (int i = 0; i < storeDieValue.Length; i++) {
+			rollLog.text = rollLog.text + "Position " + i + " has a value of " + storeDieValue[i] + "\n";
+		}
+	}
 }
