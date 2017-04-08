@@ -30,6 +30,19 @@ public class DisplayCurrentDieValue : MonoBehaviour
 		if (i < trials) {
 			Automator ();
 		}
+
+		if (i == trials) {
+			//GetComponent<ArrayToText> ().runWriteArray = true;
+			GetComponent<ArrayToText> ().WriteArray ();
+			//GetComponent<ArrayToText> ().runWriteArray = false;
+			//GetComponent<ReadArrayFromText> ().readText = true;
+			GetComponent<ReadArrayFromText> ().ReadTextFromFile();
+			//GetComponent<ReadArrayFromText> ().readText = false;
+			i++;
+		}
+		if (i == trials + 1) {
+
+		}
 	}
 
 	void Automator(){
@@ -48,8 +61,28 @@ public class DisplayCurrentDieValue : MonoBehaviour
 		}
 	}
 
+	//everything is in place, need to add real time results, then display total results if toggled.
+
 	void OnGUI()
 	{
-		GUILayout.Label(currentValue.ToString());
+		bool lifeTimeToggle = false;
+
+		GUI.Box (new Rect (10, 10, 120, 230), "Results");
+
+		GUI.Label (new Rect (20, 30, 100, 30), "1: ");
+		GUI.Label (new Rect (20, 50, 100, 30), "2: ");
+		GUI.Label (new Rect (20, 70, 100, 30), "3: ");
+		GUI.Label (new Rect (20, 90, 100, 30), "4: ");
+		GUI.Label (new Rect (20, 110, 100, 30), "5: ");
+		GUI.Label (new Rect (20, 130, 100, 30), "6: ");
+
+		if(GUI.Toggle (new Rect (20,180,100,30), lifeTimeToggle, " Total Results")){
+
+		}
+
+		if(GUI.Button(new Rect(30,210,80,20), "Play Again")){
+			//Invoke(Automator(), 3);
+		}
 	}
+
 }

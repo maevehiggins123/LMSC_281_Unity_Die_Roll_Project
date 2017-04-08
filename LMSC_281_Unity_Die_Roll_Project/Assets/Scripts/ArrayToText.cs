@@ -22,10 +22,10 @@ public class ArrayToText : MonoBehaviour {
 	}
 
 	void Update(){
-		if (runWriteArray) {
-			WriteArray ();
-			runWriteArray = false;
-		}
+//		if (runWriteArray) {
+//			WriteArray ();
+//			runWriteArray = false;
+//		}
 	}
 
 	public void WriteArray (){
@@ -35,7 +35,7 @@ public class ArrayToText : MonoBehaviour {
 			stringOfResults = stringOfResults + intArrayValue.ToString ();
 		}
 
-//		stringOfResults = stringOfResults;
+		stringOfResults = stringOfResults + "\r\n";
 
 		File.AppendAllText (fileToWriteTo, stringOfResults);
 

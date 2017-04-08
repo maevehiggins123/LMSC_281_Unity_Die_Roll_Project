@@ -17,10 +17,10 @@ public class ReadArrayFromText : MonoBehaviour {
 	
 
 	void Update () {
-		if (readText) {
-			ReadTextFromFile ();
-			readText = false;
-		}
+//		if (readText) {
+//			ReadTextFromFile ();
+//			readText = false;
+//		}
 	}
 
 	public void ReadTextFromFile(){
@@ -28,7 +28,7 @@ public class ReadArrayFromText : MonoBehaviour {
 		Debug.Log (allTextString);
 
 		for (int i = 0; i < 100; i++) {
-			string tempString = allTextString [i].ToString ().Trim ();
+			string tempString = allTextString [i].ToString ();
 			//Debug.Log (tempString);
 
 			intArray [i] = System.Int32.Parse(tempString);
