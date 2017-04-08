@@ -3,6 +3,9 @@
 using UnityEngine;
 using System.Collections;
 
+//JC to access the text functions we need an additional library
+using UnityEngine.UI;
+
 public class ApplyForceInRandomDirection : MonoBehaviour
 {
 	public string buttonName = "Fire1";
@@ -18,6 +21,9 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 
 	//JC we need an array to hold the values of our rolls
 	public int[] allRolls;
+
+	//JC we can use a GameObject variable to connect to the results text object
+	public Text results;
 
 	//JC so that our array can use the above variable "totalRolls" as its size we need to initialize it in the Start function
 	void Start () {
@@ -65,8 +71,10 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 		else {
 			//JC we are finished rolling our die, so we can cancel the invoke method call
 			//but first we need to capture the last roll
+			//and then we display the results to a text object
 			CaptureToArray();
 			CancelInvoke();
+			DisplayResults();
 		}
 	}
 
@@ -74,6 +82,14 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 	void CaptureToArray () {
 		if (numOfRolls < allRolls.Length) {
 			allRolls[numOfRolls] = GetComponent<DisplayCurrentDieValue>().currentValue;
+		}
+	}
+
+	//JC to display the results to the gamewindow we need to convert the array into a string and then send to a text object
+	void DisplayResults () {
+		results.text = "The results are as follows:" + "\n";
+		for (int i = 0; i < allRolls.Length; i++) {
+			results.text = results.text + allRolls[i].ToString() + " , ";
 		}
 	}
 }
