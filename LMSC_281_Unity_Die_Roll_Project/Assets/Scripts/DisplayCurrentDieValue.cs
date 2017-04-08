@@ -9,7 +9,13 @@ public class DisplayCurrentDieValue : MonoBehaviour
 
 	private int currentValue = 1;
 
+	public int trials = 100;
+	public int[] results = new int[100];
+	public int i = 0;
+
 	private bool rollComplete = false;
+
+
 
 	// Update is called once per frame
 	void Update ()
@@ -21,14 +27,24 @@ public class DisplayCurrentDieValue : MonoBehaviour
 			currentValue = hit.collider.GetComponent<DieValue>().value;
 		}
 
-		if(GetComponent<Rigidbody>().IsSleeping() && !rollComplete)
-		{
-			rollComplete = true;
-			Debug.Log("Die roll complete, die is at rest");
+		if (i < trials) {
+			Automator ();
 		}
-		else if(!GetComponent<Rigidbody>().IsSleeping())
-		{
+	}
+
+	void Automator(){
+		
+		if(GetComponent<Rigidbody>().IsSleeping() && rollComplete == false){
+				
+			Debug.Log("Die roll complete, die is at rest");
+			GetComponent<ApplyForceInRandomDirection>().Roller();
+			rollComplete = true;
+		}
+		if (GetComponent<Rigidbody> ().IsSleeping () && rollComplete == true) {
+			results [i] = currentValue;
+			Debug.Log (i + "f");
 			rollComplete = false;
+			i++;
 		}
 	}
 

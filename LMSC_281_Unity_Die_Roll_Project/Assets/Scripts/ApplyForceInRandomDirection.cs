@@ -10,10 +10,12 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 	public float torqueAmount = 10.0f;
 	public ForceMode forceMode;
 
+	private bool rollComplete = false;
+
 	// Update is called once per frame
-	void Update ()
+	public void Roller ()
 	{
-		if(Input.GetButtonDown(buttonName))
+		if(GetComponent<Rigidbody>().IsSleeping() && !rollComplete)
 		{
 			GetComponent<Rigidbody>().AddForce(Random.onUnitSphere*forceAmount,forceMode);
 			GetComponent<Rigidbody>().AddTorque(Random.onUnitSphere*torqueAmount,forceMode);
