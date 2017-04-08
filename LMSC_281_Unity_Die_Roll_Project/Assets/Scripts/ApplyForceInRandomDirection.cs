@@ -13,8 +13,16 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 	private bool rollComplete = false;
 
 	//JC so we can track the number of rolls and also know the position in the array we need a counter and a total
-	public int numOfRolls = 0;
+	public int numOfRolls = -1;
 	int totalRolls = 20;
+
+	//JC we need an array to hold the values of our rolls
+	public int[] allRolls;
+
+	//JC so that our array can use the above variable "totalRolls" as its size we need to initialize it in the Start function
+	void Start () {
+		allRolls = new int[totalRolls];
+	}
 
 	// Update is called once per frame
 	void Update ()
@@ -23,16 +31,15 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 		if (Input.GetButtonDown (buttonName)) 
 		
 		{
-			//JC the 20 second delay seems a bit excessive so I reduced it to 3
+			//JC the 20 second delay seems a bit excessive so I reduced it to 1
 			//We also need a way to stop the invoke, we can add a counter to know when we are done
-			InvokeRepeating ("RollSim", 0, 2);
+			InvokeRepeating ("RollSim", 0, 1);
 		}
 
 		if(GetComponent<Rigidbody>().IsSleeping() && !rollComplete)
 		{
 			rollComplete = true;
 			Debug.Log("Die roll complete, die is at rest");
-
 		}
 		else if(!GetComponent<Rigidbody>().IsSleeping())
 		{
@@ -44,8 +51,12 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 	{
 		//JC we need a counter to know whether we should roll again or not
 		if (numOfRolls < totalRolls) {
-			if (rollComplete)
-			{
+			if (rollComplete) {
+				//JC now that we know a roll has been completed, we can capture the value just prior to rolling again
+				//but we don't want the initial value when the application first opens
+				if (numOfRolls >= 0) {
+					CaptureToArray();
+				}
 				GetComponent<Rigidbody> ().AddForce (Random.onUnitSphere * forceAmount, forceMode);
 				GetComponent<Rigidbody> ().AddTorque (Random.onUnitSphere * torqueAmount, forceMode);
 				numOfRolls++;
@@ -53,7 +64,16 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 		}
 		else {
 			//JC we are finished rolling our die, so we can cancel the invoke method call
+			//but first we need to capture the last roll
+			CaptureToArray();
 			CancelInvoke();
+		}
+	}
+
+	//JC so that we can create a separate function to capture our values
+	void CaptureToArray () {
+		if (numOfRolls < allRolls.Length) {
+			allRolls[numOfRolls] = GetComponent<DisplayCurrentDieValue>().currentValue;
 		}
 	}
 }

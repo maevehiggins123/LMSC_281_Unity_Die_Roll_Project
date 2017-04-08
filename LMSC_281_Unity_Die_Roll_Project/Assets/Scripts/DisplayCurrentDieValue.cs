@@ -7,7 +7,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
 {
 	public LayerMask dieValueColliderLayer = -1;
 
-	//JC we need this to be public so we can access it from another class
+	//JC we need this value to be public so that we can grab it from another class
 	public int currentValue = 1;
 
 	private bool rollComplete = false;
