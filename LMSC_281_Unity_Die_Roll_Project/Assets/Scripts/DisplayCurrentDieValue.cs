@@ -7,7 +7,8 @@ public class DisplayCurrentDieValue : MonoBehaviour
 {
 	public LayerMask dieValueColliderLayer = -1;
 
-	private int currentValue = 1;
+	//JC we need this to be public so we can access it from another class
+	public int currentValue = 1;
 
 	private bool rollComplete = false;
 
@@ -21,15 +22,15 @@ public class DisplayCurrentDieValue : MonoBehaviour
 			currentValue = hit.collider.GetComponent<DieValue>().value;
 		}
 
-		if(GetComponent<Rigidbody>().IsSleeping() && !rollComplete)
-		{
-			rollComplete = true;
-			Debug.Log("Die roll complete, die is at rest");
-		}
-		else if(!GetComponent<Rigidbody>().IsSleeping())
-		{
-			rollComplete = false;
-		}
+//		if(GetComponent<Rigidbody>().IsSleeping() && !rollComplete)
+//		{
+//			rollComplete = true;
+//			Debug.Log("Die roll complete, die is at rest");
+//		}
+//		else if(!GetComponent<Rigidbody>().IsSleeping())
+//		{
+//			rollComplete = false;
+//		}
 	}
 
 	void OnGUI()

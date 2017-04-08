@@ -12,6 +12,10 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 
 	private bool rollComplete = false;
 
+	//JC so we can track the number of rolls and also know the position in the array we need a counter and a total
+	public int numOfRolls = 0;
+	int totalRolls = 20;
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -19,7 +23,9 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 		if (Input.GetButtonDown (buttonName)) 
 		
 		{
-			InvokeRepeating ("RollSim", 0, 20);
+			//JC the 20 second delay seems a bit excessive so I reduced it to 3
+			//We also need a way to stop the invoke, we can add a counter to know when we are done
+			InvokeRepeating ("RollSim", 0, 2);
 		}
 
 		if(GetComponent<Rigidbody>().IsSleeping() && !rollComplete)
@@ -36,10 +42,18 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 
 	void RollSim()
 	{
-		if (rollComplete = true)
-		{
-			GetComponent<Rigidbody> ().AddForce (Random.onUnitSphere * forceAmount, forceMode);
-			GetComponent<Rigidbody> ().AddTorque (Random.onUnitSphere * torqueAmount, forceMode);
+		//JC we need a counter to know whether we should roll again or not
+		if (numOfRolls < totalRolls) {
+			if (rollComplete)
+			{
+				GetComponent<Rigidbody> ().AddForce (Random.onUnitSphere * forceAmount, forceMode);
+				GetComponent<Rigidbody> ().AddTorque (Random.onUnitSphere * torqueAmount, forceMode);
+				numOfRolls++;
+			}
+		}
+		else {
+			//JC we are finished rolling our die, so we can cancel the invoke method call
+			CancelInvoke();
 		}
 	}
 }
