@@ -13,8 +13,8 @@ public class DisplayCurrentDieValue : MonoBehaviour
 
     public static DisplayCurrentDieValue instance;
 
-	//JC to make this work correctly without skipping the first position begin the roll counter at 0
-    public int[] dieNumberArray = new int[5];
+	//Grabing number of rolls from the public variable
+    public int[] dieNumberArray = new int[ApplyForceInRandomDirection.instance.numberOfRolls];
 
 	//JC begin your counter at 0, to match the way an array position begins
     int rollCounter = 0;
@@ -89,6 +89,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
         }
         //add 1 to rollCounter which happens to be the increment value of the array dieNumberArray
         rollCounter++;
+        
 
     }
 }

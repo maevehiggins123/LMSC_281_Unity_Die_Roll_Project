@@ -7,11 +7,18 @@ using System.Collections;
 
 public class ApplyForceInRandomDirection : MonoBehaviour
 {
+    public static ApplyForceInRandomDirection instance; 
+
 	public string buttonName = "Fire1";
 	public float forceAmount = 10.0f;
 	public float torqueAmount = 10.0f;
+    public int numberOfRolls; 
 	public ForceMode forceMode;
 
+    void Awake()
+    {
+        instance = this; 
+    }
 
     void Start()
     {
@@ -26,7 +33,7 @@ public class ApplyForceInRandomDirection : MonoBehaviour
         int i = 0;
 
 		//JC this value "21" would be better served as a variable so that if it changes in one script it can change in another
-        while (i < 5)
+        while (i < numberOfRolls)
         {
             AddDiceForce();
 
@@ -34,8 +41,8 @@ public class ApplyForceInRandomDirection : MonoBehaviour
 			i++;
             Debug.Log("current roll is:" + i);
 
-			//JC given that we have a roll complete Boolean you could just key off of that instead of forcing a long wait
-            yield return new WaitForSeconds(3f);
+            //Wait until roll is complete
+            yield return new WaitUntil(() => DisplayCurrentDieValue.instance.rollComplete); 
           
 
         }               

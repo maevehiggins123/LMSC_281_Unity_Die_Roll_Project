@@ -4,7 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI; 
 
 public class DisplayResultButton : MonoBehaviour {
 
@@ -33,16 +33,13 @@ public class DisplayResultButton : MonoBehaviour {
         instance = this;
     }
 
-    void Start()
-    {
-        Button btn = yourButton.GetComponent<Button>();
-        btn.onClick.AddListener(TaskOnClick);
-    }
+    //void Start()
+    //{
+    //    Button btn = yourButton.GetComponent<Button>();
+    //    btn.onClick.AddListener(TaskOnClick);
+    //}
 
-    //Update dice number score
-
-	//JC this is working but you need to then find a way to present it in the game window!
-    void TaskOnClick()
+    void Update()
     {
         countText1.text = "Number 1: " + dieNumber1.ToString();
         countText2.text = "Number 2: " + dieNumber2.ToString();
@@ -51,4 +48,12 @@ public class DisplayResultButton : MonoBehaviour {
         countText5.text = "Number 5: " + dieNumber5.ToString();
         countText6.text = "Number 6: " + dieNumber6.ToString();
     }
+
+    //Update dice number score
+
+
+    //void TaskOnClick()
+    //{
+    //    System.IO.File.WriteAllText("Resources", "hello world!");
+    //}
 }
