@@ -23,7 +23,7 @@ public class ApplyForceInRandomDirection : MonoBehaviour
     void Start()
     {
         //Start Coroutine
-        StartCoroutine(WaitAndPrint());      
+        StartCoroutine(WaitAndPrint());
     }
     
     //Using Enumerator which allows the game to wait a number of seconds before continuing dice rolling loop.

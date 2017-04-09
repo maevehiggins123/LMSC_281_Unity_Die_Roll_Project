@@ -23,6 +23,12 @@ public class DisplayCurrentDieValue : MonoBehaviour
     {
         instance = this;
     }
+    
+    void Start()
+    {
+        string testWriteArray = dieNumberArray.Length.ToString();
+        Debug.Log("Length of dieNumberArray is" + testWriteArray); 
+    }
 
     void Update ()
 	{
@@ -52,6 +58,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
 
             //call StoreDieValue function
             StoreDieValue();
+            WriteResultsToText.instance.WriteArray();
         }
         else if (!GetComponent<Rigidbody>().IsSleeping())
         {
