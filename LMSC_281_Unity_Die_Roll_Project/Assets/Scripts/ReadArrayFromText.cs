@@ -25,14 +25,14 @@ public class ReadArrayFromText : MonoBehaviour {
 
 	public void ReadTextFromFile(){
 		allTextString = File.ReadAllText (Application.dataPath + "/Resources/Results.txt");
-		Debug.Log (allTextString);
+		//Debug.Log (allTextString);
 
 		for (int i = 0; i < 100; i++) {
 			string tempString = allTextString [i].ToString ();
 			//Debug.Log (tempString);
 
 			intArray [i] = System.Int32.Parse(tempString);
-
+			//Debug.Log ("int array " + i);
 		}
 	}
 }
