@@ -11,21 +11,25 @@ public class DisplayCurrentDieValue : MonoBehaviour
 	public int currentValue = 1;
 	public bool rollComplete = false;
 
-    public static DisplayCurrentDieValue instance;
+	//while instancing can work in some situations, it is unnecessary here, as we can directly reference this class
+    //public static DisplayCurrentDieValue instance;
 
-	//Grabing number of rolls from the public variable
-    public int[] dieNumberArray = new int[ApplyForceInRandomDirection.instance.numberOfRolls];
+	//Grabbing number of rolls from the public variable
+	//JC we can more simply grab the specific component in the Start function
+    //public int[] dieNumberArray = new int[ApplyForceInRandomDirection.instance.numberOfRolls];
+	public int[] dieNumberArray;
 
 	//JC begin your counter at 0, to match the way an array position begins
-    int rollCounter = 0;
+    public int rollCounter = 0;
 
-    void Awake()
-    {
-        instance = this;
-    }
+//    void Awake()
+//    {
+//        instance = this;
+//    }
     
     void Start()
     {
+		dieNumberArray = new int[GetComponent<ApplyForceInRandomDirection>().numberOfRolls];
         string testWriteArray = dieNumberArray.Length.ToString();
         Debug.Log("Length of dieNumberArray is" + testWriteArray); 
     }
@@ -33,7 +37,9 @@ public class DisplayCurrentDieValue : MonoBehaviour
     void Update ()
 	{
         //call DiceRoll method
-        DiceRoll();
+		if ((rollCounter >= 0) && (rollCounter < GetComponent<ApplyForceInRandomDirection>().numberOfRolls)) {
+        	DiceValue();
+		}
 	}
 
 	void OnGUI()
@@ -42,7 +48,7 @@ public class DisplayCurrentDieValue : MonoBehaviour
 	}
 
 
-    void DiceRoll()
+    void DiceValue()
     {
         RaycastHit hit;
 
@@ -57,8 +63,12 @@ public class DisplayCurrentDieValue : MonoBehaviour
             Debug.Log("Die roll complete, die is at rest");
 
             //call StoreDieValue function
-            StoreDieValue();
-            WriteResultsToText.instance.WriteArray();
+			if (rollCounter < GetComponent<ApplyForceInRandomDirection>().numberOfRolls) {
+            	StoreDieValue();
+			}
+			//JC we can wait until the end to write to the text file
+//			GetComponent<WriteResultsToText>().WriteArray();
+//            WriteResultsToText.instance.WriteArray();
         }
         else if (!GetComponent<Rigidbody>().IsSleeping())
         {
